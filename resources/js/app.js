@@ -21,6 +21,7 @@ window.Vue = require('vue');
 
 Vue.component('topo', require('./components/Topo.vue').default);
 Vue.component('card', require('./components/Card.vue').default);
+Vue.component('painel', require('./components/Painel.vue').default);
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
