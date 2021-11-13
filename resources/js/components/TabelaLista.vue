@@ -137,6 +137,12 @@
         computed: {
           lista: function () {
 
+              this.itens.sort(function (a, b) {
+                  if(a[1] < b[1]) { return 1;  }
+                  if(a[1] > b[1]) { return -1; }
+                  return 0;
+              });
+
               return this.itens.filter(res => {
 
                   for (let k = 0; k < res.length; k++) {
