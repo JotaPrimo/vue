@@ -1,7 +1,26 @@
 <template>
 
     <div>
-    <a v-if="criar" v-bind:href="criar">Criar</a>
+
+
+            <div class="form-inline flex mb-2" style="justify-content: space-between">
+                <a v-if="criar" v-bind:href="criar">Criar</a>
+                <div class="form-group">
+                    <input type="search" class="form-control" placeholder="Buscar" v-model="buscar">
+
+                    <div class="input-group-append">
+                        <button class="btn btn-primary">
+                            <i class="fas fa-search"></i>
+                        </button>
+
+
+                    </div>
+
+                </div>
+
+            </div>
+
+
 
     <table class="table table-hover table-responsive-sm">
 
@@ -13,7 +32,7 @@
         </tr>
         </thead>
         <tbody>
-        <tr v-for="(iten, index) in itens">
+        <tr v-for="(iten, index) in lista">
 
             <th v-for="i in iten" scope="row"> {{ i }} </th>
 
@@ -101,11 +120,33 @@
 
 <script>
     export default {
+
       props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
+        data: function () {
+          return {
+              buscar: ''
+          }
+        },
+
       methods: {
           executaForm: function (index) {
               document.getElementById('index').submit();
           }
-      }
+      },
+
+        computed: {
+          lista: function () {
+              let busca = "php";
+              return this.itens.filter(res => {
+
+                  return true;
+              });
+
+
+
+
+              return this.itens;
+          }
+        }
     }
 </script>

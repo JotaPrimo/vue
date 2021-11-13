@@ -2140,11 +2140,44 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
+//
 /* harmony default export */ __webpack_exports__["default"] = ({
   props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
+  data: function data() {
+    return {
+      buscar: ''
+    };
+  },
   methods: {
     executaForm: function executaForm(index) {
       document.getElementById('index').submit();
+    }
+  },
+  computed: {
+    lista: function lista() {
+      var busca = "php";
+      return this.itens.filter(function (res) {
+        return true;
+      });
+      return this.itens;
     }
   }
 });
@@ -38635,9 +38668,44 @@ var render = function () {
   var _h = _vm.$createElement
   var _c = _vm._self._c || _h
   return _c("div", [
-    _vm.criar
-      ? _c("a", { attrs: { href: _vm.criar } }, [_vm._v("Criar")])
-      : _vm._e(),
+    _c(
+      "div",
+      {
+        staticClass: "form-inline flex mb-2",
+        staticStyle: { "justify-content": "space-between" },
+      },
+      [
+        _vm.criar
+          ? _c("a", { attrs: { href: _vm.criar } }, [_vm._v("Criar")])
+          : _vm._e(),
+        _vm._v(" "),
+        _c("div", { staticClass: "form-group" }, [
+          _c("input", {
+            directives: [
+              {
+                name: "model",
+                rawName: "v-model",
+                value: _vm.buscar,
+                expression: "buscar",
+              },
+            ],
+            staticClass: "form-control",
+            attrs: { type: "search", placeholder: "Buscar" },
+            domProps: { value: _vm.buscar },
+            on: {
+              input: function ($event) {
+                if ($event.target.composing) {
+                  return
+                }
+                _vm.buscar = $event.target.value
+              },
+            },
+          }),
+          _vm._v(" "),
+          _vm._m(0),
+        ]),
+      ]
+    ),
     _vm._v(" "),
     _c("table", { staticClass: "table table-hover table-responsive-sm" }, [
       _c("thead", [
@@ -38660,7 +38728,7 @@ var render = function () {
       _vm._v(" "),
       _c(
         "tbody",
-        _vm._l(_vm.itens, function (iten, index) {
+        _vm._l(_vm.lista, function (iten, index) {
           return _c(
             "tr",
             [
@@ -38842,7 +38910,18 @@ var render = function () {
     ]),
   ])
 }
-var staticRenderFns = []
+var staticRenderFns = [
+  function () {
+    var _vm = this
+    var _h = _vm.$createElement
+    var _c = _vm._self._c || _h
+    return _c("div", { staticClass: "input-group-append" }, [
+      _c("button", { staticClass: "btn btn-primary" }, [
+        _c("i", { staticClass: "fas fa-search" }),
+      ]),
+    ])
+  },
+]
 render._withStripped = true
 
 
