@@ -2173,9 +2173,16 @@ __webpack_require__.r(__webpack_exports__);
   },
   computed: {
     lista: function lista() {
-      var busca = "php";
+      var _this = this;
+
       return this.itens.filter(function (res) {
-        return true;
+        for (var k = 0; k < res.length; k++) {
+          if ((res[k] + "").toLowerCase().indexOf(_this.buscar.toLowerCase()) >= 0) {
+            return true;
+          }
+        }
+
+        return false;
       });
       return this.itens;
     }

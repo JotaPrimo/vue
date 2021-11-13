@@ -136,14 +136,18 @@
 
         computed: {
           lista: function () {
-              let busca = "php";
+
               return this.itens.filter(res => {
 
-                  return true;
+                  for (let k = 0; k < res.length; k++) {
+                      if((res[k] + "").toLowerCase().indexOf(this.buscar.toLowerCase()) >= 0) {
+                          return true;
+                      }
+                  }
+
+                  return false;
+
               });
-
-
-
 
               return this.itens;
           }
