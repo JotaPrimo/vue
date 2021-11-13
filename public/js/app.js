@@ -2163,7 +2163,9 @@ __webpack_require__.r(__webpack_exports__);
   props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemCol'],
   data: function data() {
     return {
-      buscar: ''
+      buscar: '',
+      ordemAux: this.ordem || "asc",
+      ordemAuxCol: this.ordemCol || 0
     };
   },
   methods: {
@@ -2171,12 +2173,12 @@ __webpack_require__.r(__webpack_exports__);
       document.getElementById('index').submit();
     },
     ordernaColuna: function ordernaColuna(coluna) {
-      this.ordemCol = coluna;
+      this.ordemAuxCol = coluna;
 
-      if (this.ordem.toLowerCase() == "asc") {
-        this.ordem = 'desc';
+      if (this.ordemAux.toLowerCase() == "asc") {
+        this.ordemAux = 'desc';
       } else {
-        this.ordem = 'asc';
+        this.ordemAux = 'asc';
       }
     }
   },
@@ -2184,8 +2186,8 @@ __webpack_require__.r(__webpack_exports__);
     lista: function lista() {
       var _this = this;
 
-      var ordem = this.ordem || "asc";
-      var ordemCol = this.ordemCol || 0;
+      var ordem = this.ordemAux;
+      var ordemCol = this.ordemAuxCol;
       ordem = ordem.toLowerCase();
       ordemCol = parseInt(ordemCol);
 
