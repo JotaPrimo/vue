@@ -27,7 +27,7 @@
         <thead>
 
         <tr>
-            <th scope="col" v-for="titulo in titulos">{{ titulo }}</th>
+            <th style="cursor: pointer;" v-on:click="ordernaColuna(index)" scope="col" v-for="(titulo, index) in titulos">{{ titulo }}</th>
             <th v-if="detalhe || editar || deletar">Ação</th>
         </tr>
         </thead>
@@ -121,7 +121,7 @@
 <script>
     export default {
 
-      props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token'],
+      props: ['titulos', 'itens', 'criar', 'detalhe', 'editar', 'deletar', 'token', 'ordem', 'ordemCol'],
         data: function () {
           return {
               buscar: ''
@@ -131,17 +131,47 @@
       methods: {
           executaForm: function (index) {
               document.getElementById('index').submit();
+          },
+
+          ordernaColuna: function (coluna) {
+              this.ordemCol = coluna;
+              if(this.ordem.toLowerCase() == "asc") {
+                  this.ordem =  'desc';
+              } else {
+                  this.ordem = 'asc';
+              }
+
           }
       },
 
         computed: {
           lista: function () {
 
-              this.itens.sort(function (a, b) {
-                  if(a[1] < b[1]) { return 1;  }
-                  if(a[1] > b[1]) { return -1; }
-                  return 0;
-              });
+              let ordem = this.ordem || "asc";
+              let ordemCol = this.ordemCol || 0;
+
+              ordem = ordem.toLowerCase();
+              ordemCol = parseInt(ordemCol);
+
+
+
+              if(ordem == "asc") {
+
+                  this.itens.sort(function (a, b) {
+                      if(a[ordemCol] > b[ordemCol]) { return 1;  }
+                      if(a[ordemCol] < b[ordemCol]) { return -1; }
+                      return 0;
+                  });
+              } else {
+                  this.itens.sort(function (a, b) {
+                      if(a[ordemCol] < b[ordemCol]) { return 1;  }
+                      if(a[ordemCol] > b[ordemCol]) { return -1; }
+                      return 0;
+                  });
+              }
+
+
+
 
               return this.itens.filter(res => {
 

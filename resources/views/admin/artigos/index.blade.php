@@ -15,6 +15,7 @@
                     [3, 'Curso Laravel 7', 'Curso Laravel 7', 'Caleb Santos', '00/12/2020'],
                     [4, 'Curso Spring boot ', 'Spring boot', 'Jughead Santos', '00/12/2020']
                 ]"
+                ordem="desc" ordemCol="2"
                 detalhe="#detalhe" criar="#criar" editar="#editar" deletar="#deletar" token="7888875"
 
             >
