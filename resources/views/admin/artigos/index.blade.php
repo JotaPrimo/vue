@@ -6,6 +6,8 @@
 
         <painel titulo="Lista de Artigos">
 
+            <migalhas v-bind:lista="{{ $listaMigalhas }}"> </migalhas>
+
             <tabela-lista
                 v-bind:titulos="['ID', 'Titulo', 'Descrição', 'Autor', 'Data' ]"
                 v-bind:itens="
